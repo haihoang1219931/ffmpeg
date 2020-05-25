@@ -5,8 +5,7 @@ SOURCES += main.cpp \
     main_file_duration.cpp \
     main_decode_metadata.cpp \
     main_decode_raw_klv.cpp \
-    main_klv_parse.cpp \
-    Bytes/ByteManipulation.cpp
+    main_klv_parse.cpp
 
 # OPENCV
 INCLUDEPATH += /usr/local/include
@@ -50,6 +49,3 @@ unix:!macx: LIBS += -LD:\usr\lib\x86_64-linux-gnu\
     -lgstrtspserver-1.0 \
     -lgobject-2.0 \
     -lgstvideo-1.0
-
-HEADERS += \
-    Bytes/ByteManipulation.h
