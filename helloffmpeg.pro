@@ -1,9 +1,14 @@
 CONFIG += console c++11
 
 SOURCES += main.cpp \
-    main_read_file.cpp
+    main_read_file.cpp \
+    main_file_duration.cpp \
+    main_decode_metadata.cpp \
+    main_decode_raw_klv.cpp \
+    main_klv_parse.cpp \
+    Bytes/ByteManipulation.cpp
 
-
+# OPENCV
 INCLUDEPATH += /usr/local/include
 DEPENDPATH += /usr/local/include
 unix:!macx: LIBS += -L/usr/local/lib/  \
@@ -16,24 +21,35 @@ unix:!macx: LIBS += -L/usr/local/lib/  \
     -lopencv_imgproc \
     -lopencv_videoio
 
+# FFMPEG
+INCLUDEPATH += /usr/include/x86_64-linux-gnu/
+DEPENDPATH += /usr/include/x86_64-linux-gnu/
 
-INCLUDEPATH += /home/hainh/ffmpeg_build/include
-DEPENDPATH += /home/hainh/ffmpeg_build/include
-
-LIBS += -L/home/hainh/ffmpeg_build/lib \
+LIBS += -L/usr/lib/x86_64-linux-gnu \
     -lavformat \
     -lavcodec \
     -lavdevice \
     -lavfilter \
     -lavutil \
     -lswscale \
-    -lswresample \
-    -lpostproc \
-    -lSDL \
-    -lass -laom -lfdk-aac -lvpx -lopus -lmp3lame \
-    -lvorbis -lm\
-    -lm -lz -llzma \
-    -lx264 -ldl -lva -lm -lX11 \
-    -lx265 -lm -lrt -ldl \
-    -lvdpau -lva-drm -lva-x11
+    -lswresample
 
+# GSTREAMER
+unix:!macx: DEPENDPATH += /usr/local/include
+unix:!macx: INCLUDEPATH += /usr/include/gstreamer-1.0
+#unix:!macx: INCLUDEPATH += /usr/local/include/gstreamer-1.0
+unix:!macx: INCLUDEPATH += /usr/lib/x86_64-linux-gnu/gstreamer-1.0/include
+unix:!macx: INCLUDEPATH += /usr/include/glib-2.0
+unix:!macx: INCLUDEPATH += /usr/lib/x86_64-linux-gnu/glib-2.0/include
+
+unix:!macx: LIBS += -LD:\usr\lib\x86_64-linux-gnu\
+    -lglib-2.0 \
+    -lgstreamer-1.0 \
+    -lgstapp-1.0 \
+    -lgstrtsp-1.0 \
+    -lgstrtspserver-1.0 \
+    -lgobject-2.0 \
+    -lgstvideo-1.0
+
+HEADERS += \
+    Bytes/ByteManipulation.h
