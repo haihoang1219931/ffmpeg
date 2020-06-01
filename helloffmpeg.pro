@@ -1,11 +1,13 @@
+QT += qml quick core multimedia
 CONFIG += console c++11
 
 SOURCES += main.cpp \
     main_read_file.cpp \
     main_file_duration.cpp \
-    main_decode_metadata.cpp \
-    main_decode_raw_klv.cpp \
-    main_klv_parse.cpp
+    Player.cpp \
+    VideoFaceDetector.cpp \
+    main_encode.cpp \
+    main_encode_klv.cpp
 
 # OPENCV
 INCLUDEPATH += /usr/local/include
@@ -20,11 +22,11 @@ unix:!macx: LIBS += -L/usr/local/lib/  \
     -lopencv_imgproc \
     -lopencv_videoio
 
-# FFMPEG
+## FFMPEG
 INCLUDEPATH += /usr/include/x86_64-linux-gnu/
 DEPENDPATH += /usr/include/x86_64-linux-gnu/
 
-LIBS += -L/usr/lib/x86_64-linux-gnu \
+LIBS +=  \
     -lavformat \
     -lavcodec \
     -lavdevice \
@@ -32,6 +34,12 @@ LIBS += -L/usr/lib/x86_64-linux-gnu \
     -lavutil \
     -lswscale \
     -lswresample
+
+# SDL2
+INCLUDEPATH += /usr/include/SDL2
+DEPENDPATH += /usr/include/SDL2
+LIBS += \
+    -lSDL2
 
 # GSTREAMER
 unix:!macx: DEPENDPATH += /usr/local/include
@@ -49,3 +57,7 @@ unix:!macx: LIBS += -LD:\usr\lib\x86_64-linux-gnu\
     -lgstrtspserver-1.0 \
     -lgobject-2.0 \
     -lgstvideo-1.0
+
+HEADERS += \
+    Player.hpp \
+    VideoFaceDetector.h
