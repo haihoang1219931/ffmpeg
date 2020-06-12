@@ -102,7 +102,7 @@
 //    case 0x05:
 //    {
 //        if(klv.m_value.size() >=2){
-//            int valueInt = klv.m_value[0]*256 + klv.m_value[1];
+//            uint16_t valueInt = klv.m_value[0]*256 + klv.m_value[1];
 //            float valueFloat = static_cast<float>(valueInt)/(65536-1)*360;
 //            printf("Platform Heading Angle: %f\r\n",valueFloat);
 //        }
@@ -111,7 +111,7 @@
 //    case 0x06:
 //    {
 //        if(klv.m_value.size() >=2){
-//            int valueInt = klv.m_value[0]*256 + klv.m_value[1];
+//            int16_t valueInt = klv.m_value[0]*256 + klv.m_value[1];
 //            //            int valueInt = 0xFD*256 + 0x3D;
 //            float valueFloat = static_cast<float>(valueInt+32767)/(65534)*40-20;
 //            printf("Platform Pitch Angle: %f\r\n",valueFloat);
@@ -121,7 +121,7 @@
 //    case 0x07:
 //    {
 //        if(klv.m_value.size() >=2){
-//            int valueInt = klv.m_value[0]*256 + klv.m_value[1];
+//            int16_t valueInt = klv.m_value[0]*256 + klv.m_value[1];
 //            //            int valueInt = 0x08*256 + 0xB8;
 //            float valueFloat = static_cast<float>(valueInt+32767)/(65534)*100-50;
 //            printf("Platform Roll Angle: %f\r\n",valueFloat);
@@ -385,13 +385,13 @@
 //    //    // start the audio (i.e., play sound from the QAudioOutput object that we just created)
 //    //    audio->start(input);
 //    //    return app.exec();
-//    String face_cascade_name = "haarcascade_frontalcatface.xml";
-//    //-- 1. Load the cascades
-//    if( !face_cascade.load( face_cascade_name ) )
-//    {
-//        cout << "--(!)Error loading face cascade\n";
-//        return -1;
-//    };
+////    String face_cascade_name = "haarcascade_frontalcatface.xml";
+////    //-- 1. Load the cascades
+////    if( !face_cascade.load( face_cascade_name ) )
+////    {
+////        cout << "--(!)Error loading face cascade\n";
+////        return -1;
+////    };
 //    if (argc < 2) {
 //        std::cout << "Usage: ff2cv <infile>" << std::endl;
 //        return 1;
@@ -534,13 +534,17 @@
 ////                }
 ////                cv::imshow("imageResize", imageResize);
 //                cv::imshow("imageRGB", imageRGB);
-//                cv::waitKey(1);
+//                cv::waitKey(30);
 //                ++nb_frames;
 //            }
 //        }else if(pkt.stream_index == audio_stream_index){
 ////            printf("A===========\r\n");
 //        }else if(pkt.stream_index == meta_stream_index){
-////            printf("M----\r\n");
+//            printf("M\r\n");
+//            for(int i=0; i< pkt.buf->size; i++){
+//                printf("0X%02X,",pkt.buf->data[i]);
+//            }
+//            printf("\r\n");
 //            unsigned char *data=pkt.buf->data;
 //            unsigned int startIndex = 18;
 //            while(startIndex < pkt.buf->size){
@@ -552,7 +556,7 @@
 //                                           pkt.buf->data+startIndex+2+length);
 //                startIndex += length+2;
 //                Klv klv(key,length,value);
-////                parseKlv(klv);
+//                parseKlv(klv);
 //            }
 //        }
 //        av_free_packet(&pkt);

@@ -7,7 +7,8 @@ SOURCES += main.cpp \
     Player.cpp \
     VideoFaceDetector.cpp \
     main_encode.cpp \
-    main_encode_klv.cpp
+    main_encode_klv.cpp \
+    main_muxing.cpp
 
 # OPENCV
 INCLUDEPATH += /usr/local/include
@@ -29,8 +30,8 @@ DEPENDPATH += /usr/include/x86_64-linux-gnu/
 LIBS +=  \
     -lavformat \
     -lavcodec \
-    -lavdevice \
-    -lavfilter \
+#    -lavdevice \
+#    -lavfilter \
     -lavutil \
     -lswscale \
     -lswresample
