@@ -3,16 +3,6 @@
  *
  * Copyright (c) 2016 yohhoy
  */
-#include <QGuiApplication>
-#include <QQmlApplicationEngine>
-#include <QObject>
-#include <iostream>
-#include <vector>
-#include <stdio.h>
-#include <QAudioFormat>
-#include <QAudioOutput>
-#include <QBuffer>
-
 // FFmpeg
 extern "C" {
 #include <libavformat/avformat.h>
