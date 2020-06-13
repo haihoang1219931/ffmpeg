@@ -28,8 +28,8 @@ DEPENDPATH += /usr/include/x86_64-linux-gnu/
 LIBS +=  \
     -lavformat \
     -lavcodec \
-    -lavdevice \
-    -lavfilter \
+#    -lavdevice \
+#    -lavfilter \
     -lavutil \
     -lswscale \
     -lswresample
