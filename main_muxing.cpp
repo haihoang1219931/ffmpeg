@@ -573,9 +573,9 @@
 //               "The output format is automatically guessed according to the file extension.\n"
 //               "Raw images can also be output by using '%%d' in the filename.\n"
 //               "\n", argv[0]);
-//        filename = argv[1];
-//    }else{
 //        filename = "test.ts";
+//    }else{
+//        filename = argv[1];
 //    }
 
 
@@ -585,7 +585,7 @@
 //    }
 
 //    /* allocate the output media context */
-//    avformat_alloc_output_context2(&oc, NULL, NULL, filename);
+//    avformat_alloc_output_context2(&oc, NULL, "h264", filename);
 //    if (!oc) {
 //        printf("Could not deduce output format from file extension: using MPEG.\n");
 //        avformat_alloc_output_context2(&oc, NULL, "mpeg", filename);
@@ -648,7 +648,6 @@
 //        AVPacket pkt;
 //        av_init_packet(&pkt);
 //        pkt.size = sizeof(data);
-//        printf("pkt.size=%d\r\n",pkt.size);
 //        pkt.data = data;
 //        auto res = write_frame(oc, &video_st.st->time_base, klv_stream, &pkt);
 //        free(pkt.data);
