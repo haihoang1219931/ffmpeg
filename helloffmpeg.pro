@@ -3,8 +3,6 @@ CONFIG += console c++11
 
 SOURCES += \
     main_read_file.cpp \
-    VideoFaceDetector.cpp \
-    main_encode_02.cpp \
     main_gstreamer.cpp \
     main_muxing.cpp
 
@@ -57,5 +55,4 @@ unix:!macx: LIBS += -LD:\usr\lib\x86_64-linux-gnu\
     -lgobject-2.0 \
     -lgstvideo-1.0
 
-HEADERS += \
-    VideoFaceDetector.h
+HEADERS +=
