@@ -1,13 +1,9 @@
 QT += qml quick core multimedia
 CONFIG += console c++11
 
-SOURCES += main.cpp \
+SOURCES += \
     main_read_file.cpp \
-    main_file_duration.cpp \
-    Player.cpp \
-    VideoFaceDetector.cpp \
-    main_encode.cpp \
-    main_encode_klv.cpp \
+    main_gstreamer.cpp \
     main_muxing.cpp
 
 # OPENCV
@@ -59,6 +55,4 @@ unix:!macx: LIBS += -LD:\usr\lib\x86_64-linux-gnu\
     -lgobject-2.0 \
     -lgstvideo-1.0
 
-HEADERS += \
-    Player.hpp \
-    VideoFaceDetector.h
+HEADERS +=

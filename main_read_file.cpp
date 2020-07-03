@@ -3,16 +3,6 @@
 // *
 // * Copyright (c) 2016 yohhoy
 // */
-//#include <QGuiApplication>
-//#include <QQmlApplicationEngine>
-//#include <QObject>
-//#include <iostream>
-//#include <vector>
-//#include <stdio.h>
-//#include <QAudioFormat>
-//#include <QAudioOutput>
-//#include <QBuffer>
-
 //// FFmpeg
 //extern "C" {
 //#include <libavformat/avformat.h>
@@ -68,7 +58,6 @@
 //                {
 //                    shift = 64-8-shift;
 //                }
-
 //                timestamp |= (uint64_t)klv.m_value[i] << shift;
 //            }
 //            time_t    sec = timestamp / 1000000;
@@ -326,7 +315,6 @@
 //        }
 //    }
 //        break;
-
 //    default:
 //        break;
 //    }
@@ -382,20 +370,21 @@
 //    //    // Create an audio output with our QAudioFormat
 //    //    QAudioOutput* audio = new QAudioOutput(audioFormat, nullptr);
 
-//    //    // start the audio (i.e., play sound from the QAudioOutput object that we just created)
-//    //    audio->start(input);
-//    //    return app.exec();
-////    String face_cascade_name = "haarcascade_frontalcatface.xml";
-////    //-- 1. Load the cascades
-////    if( !face_cascade.load( face_cascade_name ) )
-////    {
-////        cout << "--(!)Error loading face cascade\n";
-////        return -1;
-////    };
-//    if (argc < 2) {
-//        std::cout << "Usage: ff2cv <infile>" << std::endl;
-//        return 1;
-//    }
+
+////    //    // start the audio (i.e., play sound from the QAudioOutput object that we just created)
+////    //    audio->start(input);
+////    //    return app.exec();
+//////    String face_cascade_name = "haarcascade_frontalcatface.xml";
+//////    //-- 1. Load the cascades
+//////    if( !face_cascade.load( face_cascade_name ) )
+//////    {
+//////        cout << "--(!)Error loading face cascade\n";
+//////        return -1;
+//////    };
+////    if (argc < 2) {
+////        std::cout << "Usage: ff2cv <infile>" << std::endl;
+////        return 1;
+////    }
 
 //    const char* infile = argv[1];
 
