@@ -18,6 +18,7 @@
 //#include "opencv2/imgproc.hpp"
 //#include "opencv2/videoio.hpp"
 //#include <iostream>
+//#include "ByteManipulation.h"
 //using namespace std;
 //using namespace cv;
 //CascadeClassifier face_cascade;
@@ -35,14 +36,28 @@
 //        m_key = key;
 //        m_length = length;
 //        m_value = value;
+//        encode();
+//    }
+//    Klv(uint8_t key, uint8_t length, uint8_t* value){
+//        m_key = key;
+//        m_length = length;
+//        m_value = std::vector<uint8_t>(value,value+length);
+//        encode();
 //    }
 //    ~Klv(){}
-
+//    void encode(){
+//        m_encoded.clear();
+//        m_encoded.push_back(m_key);
+//        m_encoded.push_back(m_length);
+//        m_encoded.insert(m_encoded.end(),m_value.begin(),m_value.end());
+//    }
 //public:
 //    uint8_t m_key;
 //    uint8_t m_length;
 //    std::vector<uint8_t> m_value;
+//    std::vector<uint8_t> m_encoded;
 //};
+
 //void parseKlv(Klv klv){
 //    switch (klv.m_key) {
 //    case 0x02:
@@ -176,7 +191,7 @@
 //        if(klv.m_value.size() >=4){
 //            int valueInt = klv.m_value[0]*256*256*256 + klv.m_value[1]*256*256 +
 //                    klv.m_value[2]*256 + klv.m_value[3];
-//            float valueFloat = static_cast<float>(valueInt)/(4294967294)*360;
+//            float valueFloat = static_cast<float>(valueInt)/(4294967295)*360;
 //            if(valueFloat<0){
 //                valueFloat+=360;
 //            }
@@ -189,7 +204,7 @@
 //        if(klv.m_value.size() >=4){
 //            int valueInt = klv.m_value[0]*256*256*256 + klv.m_value[1]*256*256 +
 //                    klv.m_value[2]*256 + klv.m_value[3];
-//            float valueFloat = static_cast<float>(valueInt)/(4294967294)*360;
+//            float valueFloat = static_cast<float>(valueInt)/(4294967295)*360;
 //            printf("Sensor Relative Elevation: %f\r\n",valueFloat);
 //        }
 //    }
@@ -547,6 +562,7 @@
 //                Klv klv(key,length,value);
 //                parseKlv(klv);
 //            }
+//            break;
 //        }
 //        av_free_packet(&pkt);
 //    }
