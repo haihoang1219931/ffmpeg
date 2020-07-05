@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*
  * Read video frame with FFmpeg and convert to OpenCV image
  *
@@ -351,6 +352,359 @@ int main(int argc, char* argv[])
     //    audioFormat.setCodec("audio/pcm");
     //    audioFormat.setByteOrder(QAudioFormat::LittleEndian);
     //    audioFormat.setSampleType(QAudioFormat::Float);   // use Float, to have a better resolution than SignedInt or UnSignedInt
+=======
+///*
+// * Read video frame with FFmpeg and convert to OpenCV image
+// *
+// * Copyright (c) 2016 yohhoy
+// */
+//// FFmpeg
+//extern "C" {
+//#include <libavformat/avformat.h>
+//#include <libavcodec/avcodec.h>
+//#include <libavutil/avutil.h>
+//#include <libavutil/pixdesc.h>
+//#include <libswscale/swscale.h>
+//}
+//// OpenCV
+//#include <opencv2/opencv.hpp>
+//#include "opencv2/objdetect.hpp"
+//#include "opencv2/highgui.hpp"
+//#include "opencv2/imgproc.hpp"
+//#include "opencv2/videoio.hpp"
+//#include <iostream>
+//#include "ByteManipulation.h"
+//using namespace std;
+//using namespace cv;
+//CascadeClassifier face_cascade;
+//void detectAndDisplay( Mat &frame ,std::vector<Rect>& faces){
+//    Mat frame_gray;
+//    cvtColor( frame, frame_gray, COLOR_BGR2GRAY );
+//    equalizeHist( frame_gray, frame_gray );
+//    //-- Detect faces
+//    face_cascade.detectMultiScale( frame_gray, faces );
+//}
+
+//class Klv{
+//public:
+//    Klv(uint8_t key, uint8_t length, std::vector<uint8_t> value){
+//        m_key = key;
+//        m_length = length;
+//        m_value = value;
+//        encode();
+//    }
+//    Klv(uint8_t key, uint8_t length, uint8_t* value){
+//        m_key = key;
+//        m_length = length;
+//        m_value = std::vector<uint8_t>(value,value+length);
+//        encode();
+//    }
+//    ~Klv(){}
+//    void encode(){
+//        m_encoded.clear();
+//        m_encoded.push_back(m_key);
+//        m_encoded.push_back(m_length);
+//        m_encoded.insert(m_encoded.end(),m_value.begin(),m_value.end());
+//    }
+//public:
+//    uint8_t m_key;
+//    uint8_t m_length;
+//    std::vector<uint8_t> m_value;
+//    std::vector<uint8_t> m_encoded;
+//};
+
+//void parseKlv(Klv klv){
+//    switch (klv.m_key) {
+//    case 0x02:
+//        if(klv.m_length >=8){
+//            uint64_t timestamp =  0;
+//            const uint16_t dummy = 1;
+//            const bool is_little_endian = *(const uint8_t*)&dummy == 1;
+//            for(size_t i=0; i<8; i++)
+//            {
+//                size_t shift = i*8;
+
+//                if(is_little_endian)
+//                {
+//                    shift = 64-8-shift;
+//                }
+//                timestamp |= (uint64_t)klv.m_value[i] << shift;
+//            }
+//            time_t    sec = timestamp / 1000000;
+//            uint64_t      usec = timestamp % 1000000;
+//            struct tm tm;
+//            gmtime_r(&sec, &tm);
+//            char tstr[30];
+//            int len = strftime(tstr, sizeof(tstr), "%Y/%m/%d %H:%M:%S", &tm);
+//            sprintf(tstr + len, ".%03ld ", usec / 1000);
+//            printf("UNIX Time stamp L[%d]: [%ld] = %s\r\n",
+//                   klv.m_length,timestamp,
+//                   tstr);
+//        }else{
+//            printf("Wrong UNIX TimeStamp\r\n");
+//        }
+//        break;
+//    case 0x03:
+//        printf("Mission ID: ");
+//        for(int i=0; i< klv.m_value.size(); i++){
+//            printf("%c",klv.m_value[i]);
+//        }
+//        printf("\r\n");
+//        break;
+//    case 0x04:
+//        printf("Platform Tail Number: ");
+//        for(int i=0; i< klv.m_value.size(); i++){
+//            printf("%c",klv.m_value[i]);
+//        }
+//        printf("\r\n");
+//        break;
+//    case 0x05:
+//    {
+//        if(klv.m_value.size() >=2){
+//            uint16_t valueInt = klv.m_value[0]*256 + klv.m_value[1];
+//            float valueFloat = static_cast<float>(valueInt)/(65536-1)*360;
+//            printf("Platform Heading Angle: %f\r\n",valueFloat);
+//        }
+//    }
+//        break;
+//    case 0x06:
+//    {
+//        if(klv.m_value.size() >=2){
+//            int16_t valueInt = klv.m_value[0]*256 + klv.m_value[1];
+//            //            int valueInt = 0xFD*256 + 0x3D;
+//            float valueFloat = static_cast<float>(valueInt+32767)/(65534)*40-20;
+//            printf("Platform Pitch Angle: %f\r\n",valueFloat);
+//        }
+//    }
+//        break;
+//    case 0x07:
+//    {
+//        if(klv.m_value.size() >=2){
+//            int16_t valueInt = klv.m_value[0]*256 + klv.m_value[1];
+//            //            int valueInt = 0x08*256 + 0xB8;
+//            float valueFloat = static_cast<float>(valueInt+32767)/(65534)*100-50;
+//            printf("Platform Roll Angle: %f\r\n",valueFloat);
+//        }
+//    }
+//        break;
+//    case 0x0A:
+//        printf("Platform Designation: ");
+//        for(int i=0; i< klv.m_value.size(); i++){
+//            printf("%c",klv.m_value[i]);
+//        }
+//        printf("\r\n");
+//        break;
+//    case 0x0D:
+//    {
+//        if(klv.m_value.size() >=4){
+//            int valueInt = klv.m_value[0]*256*256*256 + klv.m_value[1]*256*256 +
+//                    klv.m_value[2]*256 + klv.m_value[3];
+//            float valueFloat = static_cast<float>(valueInt)/(4294967294)*180;
+//            printf("Sensor Latitude: %f\r\n",valueFloat);
+//        }
+//    }
+//        break;
+//    case 0x0E:
+//    {
+//        if(klv.m_value.size() >=4){
+//            int valueInt = klv.m_value[0]*256*256*256 + klv.m_value[1]*256*256 +
+//                    klv.m_value[2]*256 + klv.m_value[3];
+//            float valueFloat = static_cast<float>(valueInt)/(4294967294)*360;
+//            printf("Sensor Longitude: %f\r\n",valueFloat);
+//        }
+//    }
+//        break;
+//    case 0x0F:
+//    {
+//        if(klv.m_value.size() >=2){
+//            int valueInt = klv.m_value[0]*256 + klv.m_value[1];
+//            float valueFloat = static_cast<float>(valueInt)/(65535)*19900-900;
+//            printf("Sensor Altitude: %f\r\n",valueFloat);
+//        }
+//    }
+//        break;
+//    case 0x10:
+//    {
+//        if(klv.m_value.size() >=2){
+//            int valueInt = klv.m_value[0]*256 + klv.m_value[1];
+//            float valueFloat = static_cast<float>(valueInt)/(65535)*180;
+//            printf("Sensor HFOV: %f\r\n",valueFloat);
+//        }
+//    }
+//        break;
+//    case 0x11:
+//    {
+//        if(klv.m_value.size() >=2){
+//            int valueInt = klv.m_value[0]*256 + klv.m_value[1];
+//            float valueFloat = static_cast<float>(valueInt)/(65535)*180;
+//            printf("Sensor VFOV: %f\r\n",valueFloat);
+//        }
+//    }
+//        break;
+//    case 0x12:
+//    {
+//        if(klv.m_value.size() >=4){
+//            int valueInt = klv.m_value[0]*256*256*256 + klv.m_value[1]*256*256 +
+//                    klv.m_value[2]*256 + klv.m_value[3];
+//            float valueFloat = static_cast<float>(valueInt)/(4294967295)*360;
+//            if(valueFloat<0){
+//                valueFloat+=360;
+//            }
+//            printf("Sensor Relative Azimuth: %f\r\n",valueFloat);
+//        }
+//    }
+//        break;
+//    case 0x13:
+//    {
+//        if(klv.m_value.size() >=4){
+//            int valueInt = klv.m_value[0]*256*256*256 + klv.m_value[1]*256*256 +
+//                    klv.m_value[2]*256 + klv.m_value[3];
+//            float valueFloat = static_cast<float>(valueInt)/(4294967295)*360;
+//            printf("Sensor Relative Elevation: %f\r\n",valueFloat);
+//        }
+//    }
+//        break;
+//    case 0x14:
+//    {
+//        if(klv.m_value.size() >=4){
+//            int valueInt = klv.m_value[0]*256*256*256 + klv.m_value[1]*256*256 +
+//                    klv.m_value[2]*256 + klv.m_value[3];
+//            float valueFloat = static_cast<float>(valueInt)/(4294967295)*360;
+//            printf("Sensor Relative Roll: %f\r\n",valueFloat);
+//        }
+//    }
+//        break;
+//    case 0x15:
+//    {
+//        if(klv.m_value.size() >=4){
+//            int valueInt = klv.m_value[0]*256*256*256 + klv.m_value[1]*256*256 +
+//                    klv.m_value[2]*256 + klv.m_value[3];
+//            float valueFloat = static_cast<float>(valueInt)/(4294967295)*5000000;
+//            printf("SlantRanged: %f\r\n",valueFloat);
+//        }
+//    }
+//        break;
+//    case 0x17:
+//    {
+//        if(klv.m_value.size() >=4){
+//            int valueInt = klv.m_value[0]*256*256*256 + klv.m_value[1]*256*256 +
+//                    klv.m_value[2]*256 + klv.m_value[3];
+//            float valueFloat = static_cast<float>(valueInt)/(4294967294)*180;
+//            printf("Frame center Latitude: %f\r\n",valueFloat);
+//        }
+//    }
+//        break;
+//    case 0x18:
+//    {
+//        if(klv.m_value.size() >=4){
+//            int valueInt = klv.m_value[0]*256*256*256 + klv.m_value[1]*256*256 +
+//                    klv.m_value[2]*256 + klv.m_value[3];
+//            float valueFloat = static_cast<float>(valueInt)/(4294967294)*360;
+//            printf("Frame center Longitude: %f\r\n",valueFloat);
+//        }
+//    }
+//        break;
+//    case 0x19:
+//    {
+//        if(klv.m_value.size() >=2){
+//            int valueInt = klv.m_value[0]*256 + klv.m_value[1];
+//            float valueFloat = static_cast<float>(valueInt)/(65535)*19900-900;
+//            printf("Frame center Elevation: %f\r\n",valueFloat);
+//        }
+//    }
+//        break;
+//    case 0x1A:
+//    {
+//        if(klv.m_value.size() >=2){
+//            int16_t valueInt = klv.m_value[0]*256 + klv.m_value[1];
+//            float valueFloat = static_cast<float>(valueInt)/(65534)*0.15f;
+//            printf("Offset corner Latitude Point1: %f\r\n",valueFloat);
+//        }
+//    }
+//        break;
+//    case 0x1B:
+//    {
+//        if(klv.m_value.size() >=2){
+//            int16_t valueInt = klv.m_value[0]*256 + klv.m_value[1];
+//            float valueFloat = static_cast<float>(valueInt)/(65534)*0.15f;
+//            printf("Offset corner Longitude Point1: %f\r\n",valueFloat);
+//        }
+//    }
+//        break;
+//    case 0x1C:
+//    {
+//        if(klv.m_value.size() >=2){
+//            int16_t valueInt = klv.m_value[0]*256 + klv.m_value[1];
+//            float valueFloat = static_cast<float>(valueInt)/(65534)*0.15f;
+//            printf("Offset corner Latitude Point2: %f\r\n",valueFloat);
+//        }
+//    }
+//        break;
+//    case 0x1D:
+//    {
+//        if(klv.m_value.size() >=2){
+//            int16_t valueInt = klv.m_value[0]*256 + klv.m_value[1];
+//            float valueFloat = static_cast<float>(valueInt)/(65534)*0.15f;
+//            printf("Offset corner Longitude Point2: %f\r\n",valueFloat);
+//        }
+//    }
+//        break;
+//    case 0x1E:
+//    {
+//        if(klv.m_value.size() >=2){
+//            int16_t valueInt = klv.m_value[0]*256 + klv.m_value[1];
+//            float valueFloat = static_cast<float>(valueInt)/(65534)*0.15f;
+//            printf("Offset corner Latitude Point3: %f\r\n",valueFloat);
+//        }
+//    }
+//        break;
+//    case 0x1F:
+//    {
+//        if(klv.m_value.size() >=2){
+//            int16_t valueInt = klv.m_value[0]*256 + klv.m_value[1];
+//            float valueFloat = static_cast<float>(valueInt)/(65534)*0.15f;
+//            printf("Offset corner Longitude Point3: %f\r\n",valueFloat);
+//        }
+//    }
+//        break;
+//    case 0x20:
+//    {
+//        if(klv.m_value.size() >=2){
+//            int16_t valueInt = klv.m_value[0]*256 + klv.m_value[1];
+//            float valueFloat = static_cast<float>(valueInt)/(65534)*0.15f;
+//            printf("Offset corner Latitude Point4: %f\r\n",valueFloat);
+//        }
+//    }
+//        break;
+//    case 0x21:
+//    {
+//        if(klv.m_value.size() >=2){
+//            int16_t valueInt = klv.m_value[0]*256 + klv.m_value[1];
+//            float valueFloat = static_cast<float>(valueInt)/(65534)*0.15f;
+//            printf("Offset corner Longitude Point4: %f\r\n",valueFloat);
+//        }
+//    }
+//        break;
+//    default:
+//        break;
+//    }
+//}
+//int main(int argc, char* argv[])
+//{
+//    //    QGuiApplication app(argc, argv);
+//    //    // initialize parameters
+//    //        qreal sampleRate = 40000;   // sample rate
+//    //        qreal duration = 10.000;     // duration in seconds
+//    //        qreal frequency = 1000;     // frequency
+//    //        const quint32 n = static_cast<quint32>(duration * sampleRate);   // number of data samples
+//    //    QAudioFormat audioFormat;
+//    //    audioFormat.setSampleRate(static_cast<int>(sampleRate));
+//    //    audioFormat.setChannelCount(1);
+//    //    audioFormat.setSampleSize(32);   // set the sample size in bits. We set it to 32 bis, because we set SampleType to float (one float has 4 bytes ==> 32 bits)
+//    //    audioFormat.setCodec("audio/pcm");
+//    //    audioFormat.setByteOrder(QAudioFormat::LittleEndian);
+//    //    audioFormat.setSampleType(QAudioFormat::Float);   // use Float, to have a better resolution than SignedInt or UnSignedInt
+>>>>>>> c5f41c76fec028885bb2ad32b0258deea4d3457a
 
     //    // create a QAudioDeviceInfo object, to make sure that our audioFormat is supported by the device
     //    QAudioDeviceInfo deviceInfo(QAudioDeviceInfo::defaultOutputDevice());
@@ -539,6 +893,7 @@ int main(int argc, char* argv[])
 //                imageV.copyTo(image(cv::Rect(0,dst_height*5/4, dst_width/1,dst_height/4)));
 //                cv::Mat imageRGB;
 //                cv::cvtColor(image,imageRGB,cv::COLOR_YUV2RGB_YV12);
+<<<<<<< HEAD
                 //                cv::Mat imageResize;
                 //                cv::resize(imageRGB,imageResize,cv::Size(imageRGB.cols/2,imageRGB.rows/2));
                 //                std::vector<Rect> faces;
@@ -588,3 +943,50 @@ int main(int argc, char* argv[])
     avformat_close_input(&inctx);
     return 0;
 }
+=======
+////                cv::Mat imageResize;
+////                cv::resize(imageRGB,imageResize,cv::Size(imageRGB.cols/2,imageRGB.rows/2));
+////                std::vector<Rect> faces;
+////                detectAndDisplay( imageResize,faces );
+////                for ( size_t i = 0; i < faces.size(); i++ )
+////                {
+////                    Point center( faces[i].x + faces[i].width/2, faces[i].y + faces[i].height/2 );
+////                    ellipse( imageResize, center, Size( faces[i].width/2, faces[i].height/2 ), 0, 0, 360, Scalar( 255, 0, 255 ), 4 );
+////                }
+////                cv::imshow("imageResize", imageResize);
+//                cv::imshow("imageRGB", imageRGB);
+//                cv::waitKey(30);
+//                ++nb_frames;
+//            }
+//        }else if(pkt.stream_index == audio_stream_index){
+////            printf("A===========\r\n");
+//        }else if(pkt.stream_index == meta_stream_index){
+//            printf("M\r\n");
+//            for(int i=0; i< pkt.buf->size; i++){
+//                printf("0X%02X,",pkt.buf->data[i]);
+//            }
+//            printf("\r\n");
+//            unsigned char *data=pkt.buf->data;
+//            unsigned int startIndex = 18;
+//            while(startIndex < pkt.buf->size){
+//                uint8_t key = pkt.buf->data[startIndex];
+//                uint8_t length = pkt.buf->data[startIndex+1];
+//                if(length+startIndex+1>= pkt.buf->size)
+//                    break;
+//                std::vector<uint8_t> value(pkt.buf->data+startIndex+2,
+//                                           pkt.buf->data+startIndex+2+length);
+//                startIndex += length+2;
+//                Klv klv(key,length,value);
+//                parseKlv(klv);
+//            }
+//            break;
+//        }
+//        av_free_packet(&pkt);
+//    }
+//    av_frame_free(&decframe);
+//    av_frame_free(&frame);
+//    avcodec_close(vstrm->codec);
+//    avformat_close_input(&inctx);
+//    return 0;
+//}
+>>>>>>> c5f41c76fec028885bb2ad32b0258deea4d3457a

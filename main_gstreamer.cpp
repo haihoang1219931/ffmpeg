@@ -30,6 +30,7 @@
 //{
 //    printf("Push klv[%d]\r\n",app->count);
 ////    return false;
+<<<<<<< HEAD
 ////    uint8_t data[] = {
 ////        0X06,0X0E,0X2B,0X34,0X02,0X0B,0X01,0X01,0X0E,0X01,0X03,0X01,0X01,0X00,0X00,0X00,
 ////        0X81,0XF1,
@@ -86,6 +87,11 @@
 //        0X13,0X04,0XF1,0X81,0X6C,0X10,
 //        0X14,0X04,0X00,0X00,0X00,0X00,
 //        0X15,0X04,0X00,0X1E,0X0A,0X4F,0X17,0X04,0X3A,0X76,0X87,0XC0,0X18,0X04,0XB5,0X70,0X75,0X00,0X19,0X02,0X23,0X99,0X1A,0X02,0X01,0X7A,0X1B,0X02,0X00,0X75,0X1C,0X02,0XFF,0XF2,0X1D,0X02,0X02,0X03,0X1E,0X02,0XFE,0X9C,0X1F,0X02,0XFF,0X94,0X20,0X02,0X00,0X0E,0X21,0X02,0XFE,0X1C,0X01,0X02,0XAF,0X2B};
+=======
+//    uint8_t data[] = {
+//                0X06,0X0E,0X2B,0X34,0X02,0X0B,0X01,0X01,0X0E,0X01,0X03,0X01,0X01,0X00,0X00,0X00,0X81,0XF1,0X02,0X08,0X00,0X04,0XCA,0X14,0X28,0X28,0XCD,0X02,0X03,0X15,0X45,0X53,0X52,0X49,0X5F,0X4D,0X65,0X74,0X61,0X64,0X61,0X74,0X61,0X5F,0X43,0X6F,0X6C,0X6C,0X65,0X63,0X74,0X04,0X06,0X4E,0X39,0X37,0X38,0X32,0X36,0X05,0X02,0X6C,0X97,0X06,0X02,0X13,0XDA,0X07,0X02,0XDD,0X0B,0X0A,0X05,0X43,0X32,0X30,0X38,0X42,0X0B,0X00,0X0C,0X00,0X0D,0X04,0X3A,0X72,0X10,0X0A,0X0E,0X04,0XB5,0X6D,0X14,0X7C,0X0F,0X02,0X31,0X4E,0X10,0X02,0X04,0X5D,0X11,0X02,0X02,0X74,0X12,0X04,0XB6,0XE0,0XB6,0X0C,0X13,0X04,0XF6,0X3B,0XBB,0XBC,0X14,0X04,0X00,0X00,0X00,0X00,0X15,0X04,0X00,0X1E,0X02,0XFE,0X16,0X02,0X00,0X00,0X17,0X04,0X3A,0X76,0X50,0X62,0X18,0X04,0XB5,0X70,0X74,0XAF,0X19,0X02,0X23,0X9F,0X1A,0X02,0X01,0X7F,0X1B,0X02,0X00,0X5F,0X1C,0X02,0X00,0X01,0X1D,0X02,0X02,0X04,0X1E,0X02,0XFE,0X97,0X1F,0X02,0XFF,0XA7,0X20,0X02,0X00,0X00,0X21,0X02,0XFE,0X1A,0X2F,0X01,0X00,0X30,0X2A,0X01,0X01,0X01,0X02,0X01,0X01,0X03,0X04,0X2F,0X2F,0X43,0X41,0X04,0X00,0X05,0X00,0X06,0X02,0X43,0X41,0X15,0X10,0X00,0X00,0X00,0X00,0X00,0X00,0X00,0X00,0X00,0X00,0X00,0X00,0X00,0X00,0X00,0X00,0X16,0X02,0X00,0X05,0X38,0X01,0X00,0X3B,0X08,0X46,0X69,0X72,0X65,0X62,0X69,0X72,0X64,0X41,0X01,0X01,0X48,0X08,0X00,0X00,0X00,0X00,0X00,0X00,0X00,0X00,0X01,0X02,0XBB,0X33,0X00,0X00,0X00,0X00,0X00,0X00,0X00,0X00,0X00,0X00,0X00,0X00,0X00,0X00,0X00,0X00,0X00,0X00,0X00,0X00,0X00,0X00,0X00,0X00,0X00,0X00,0X00,0X00,0X00,0X00,0X00,0X00,0X00,0X00,0X00,0X00,0X00,0X00,0X22,0X32,0X01,0X00,0X00,0X00,0X00
+//    };
+>>>>>>> c5f41c76fec028885bb2ad32b0258deea4d3457a
 //    GstBuffer *buffer = gst_buffer_new_allocate(nullptr, sizeof (data), nullptr);
 //    GstMapInfo map;
 //    GstClock *clock;
@@ -95,6 +101,7 @@
 //    memcpy(map.data, data, sizeof (data));
 //    gst_buffer_unmap (buffer, &map);
 
+<<<<<<< HEAD
 ////    GST_OBJECT_LOCK (app->appsrc);
 ////    clock = GST_ELEMENT_CLOCK (app->appsrc);
 ////    base_time = GST_ELEMENT (app->appsrc)->base_time;
@@ -114,6 +121,27 @@
 //    GST_BUFFER_PTS (buffer) = (app->count + 1) * gstDuration;
 //    GST_BUFFER_DURATION (buffer) = GST_SECOND / 30;
 //    gst_app_src_push_buffer(GST_APP_SRC(app->appsrc), buffer);
+=======
+//    GST_OBJECT_LOCK (app->appsrc);
+//    clock = GST_ELEMENT_CLOCK (app->appsrc);
+//    base_time = GST_ELEMENT (app->appsrc)->base_time;
+//    gst_object_ref (clock);
+//    GST_OBJECT_UNLOCK (app->appsrc);
+//    abs_time = gst_clock_get_time (clock);
+//    gst_object_unref (clock);
+
+//    GST_BUFFER_PTS (buffer) = abs_time - base_time;
+//    GST_BUFFER_DURATION (buffer) = GST_SECOND / app->m_frameRate;
+
+//    gst_app_src_push_buffer(GST_APP_SRC(app->appsrc), buffer);
+//    int ms = 1000 / app->m_frameRate * 5;
+//    struct timespec ts = { ms / 1000, (ms % 1000) * 1000 * 1000 };
+//    nanosleep(&ts, NULL);
+////    GstClockTime gstDuration = GST_SECOND / app->m_frameRate;
+////    GST_BUFFER_PTS (buffer) = (app->count + 1) * gstDuration;
+////    GST_BUFFER_DURATION (buffer) = GST_SECOND / 30;
+////    gst_app_src_push_buffer(GST_APP_SRC(app->appsrc), buffer);
+>>>>>>> c5f41c76fec028885bb2ad32b0258deea4d3457a
 //    app->count++;
 //    return true;
 //}

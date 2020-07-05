@@ -4,7 +4,9 @@ CONFIG += console c++11
 SOURCES += \
     main_read_file.cpp \
     main_gstreamer.cpp \
-    main_muxing.cpp
+    main_muxing.cpp \
+    ByteManipulation.cpp \
+    main_encode_klv.cpp
 
 # OPENCV
 INCLUDEPATH += /usr/local/include
@@ -55,4 +57,5 @@ unix:!macx: LIBS += -LD:\usr\lib\x86_64-linux-gnu\
     -lgobject-2.0 \
     -lgstvideo-1.0
 
-HEADERS +=
+HEADERS += \
+    ByteManipulation.h
